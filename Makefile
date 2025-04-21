@@ -6,7 +6,10 @@ compile:
 	./rebar compile
 
 deps:
-	test -d deps || ./rebar get-deps
+	@mkdir -p deps
+	@if [ ! -d "deps/lager" ] && [ -d "../lager" ]; then ln -sf ../../lager deps/lager; fi
+	@if [ ! -d "deps/syslog" ] && [ -d "../syslog" ]; then ln -sf ../../syslog deps/syslog; fi
+	@if [ ! -d "deps/lager" ] || [ ! -d "deps/syslog" ]; then ./rebar get-deps; fi
 
 clean:
 	./rebar clean
