@@ -6,7 +6,7 @@ compile:
 	./rebar compile
 
 deps:
-	./rebar get-deps
+	test -d deps || ./rebar get-deps
 
 clean:
 	./rebar clean
